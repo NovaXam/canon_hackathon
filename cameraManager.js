@@ -1,5 +1,5 @@
 const config = require('./config');
-const logger = require('./howielib').Logger;
+const logger = require('./howielib/howie').Logger;
 const fs = require('fs');
 
 

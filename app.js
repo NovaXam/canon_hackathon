@@ -13,7 +13,7 @@ const config = require('./config');
 const socketManager = require('./socketManager');
 const CameraManager = require('./cameraManager');
 const ClientManager = require('./clientManager');
-const Camera = require('howielib').MMCamera;
+const Camera = require('./howielib/howie').MMCamera;
 
 let camera;
 let cameraManager;
