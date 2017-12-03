@@ -1,6 +1,7 @@
 const cloudinary = require('cloudinary');
 const axios = require('axios');
 const config = require('./config');
+const path = require('path');
 const fs = require('fs');
 
 cloudinary.config({
@@ -15,17 +16,15 @@ module.exports = (function () {
   };
 
   clientManager.prototype.uploadToLocal = function (image, callback) {
-    const fileName = 'image.jpeg';
+    const pathToFile = path.join(__dirname, 'client', 'uploads', 'image.jpeg');
+    const url = `https://canon-hack.herokuapp.com/uploads/${fileName}`;
 
-    const data = image.replace(/^data:image\/\w+;base64,/, "");
-    const buf = new Buffer(data, 'base64');
-
-    fs.writeFile(fileName, buf, function (err) {
+    fs.writeFile(pathToFile, image, function (err) {
       if (err) {
         console.log(err);
       }
 
-      cloudinary.v2.uploader.upload(fileName, callback);
+      callback(null, { url });
     });
   }
 

@@ -35,29 +35,16 @@ let clientManager;
 
   app.get('/camera/snap', (req, res) => {
     cameraManager.getImage(1)
-      // .then((buffer) => {
-      //   // azure api.
-      // })
       .then(data => {
         clientManager.uploadImage(data, (err, result) => {
-          console.log(result);
-          console.log(result.url);
-          return new Promise((resolve, reject) => {
-            resolve(result);
-          });
+          console.log('result', result);
+          return clientManager.sendToCloud(url);
         });
       })
-      .then((data) => {
-        res.json({ data });
+      .then(data => {
+        console.log('data', data);
+        clientManager.sendData(data);
       })
-      // .then((url) => {
-      //   console.log(url);
-      //   return clientManager.sendToCloud(url);
-      // })
-      // .then(data => {
-      //   console.log(data);
-      //   clientManager.sendData(data)
-      // })
       .catch(res => console.error(res));
   });
 
@@ -75,7 +62,10 @@ let clientManager;
   camera = new Camera();
   // handle camera socket connections.
   cameraManager = new CameraManager(camera);
-  cameraManager.listen(io);
+  cameraManager.listen(io, {
+    ip: '',
+    port: '',
+  });
 
   // handle client socket connections.
   clientManager = new ClientManager(io);
