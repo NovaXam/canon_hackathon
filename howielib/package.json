@@ -1,0 +1,16 @@
+{
+  "name": "howielib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "howie/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.147.0",
+    "bluebird": "^3.5.1",
+    "xml2js": "^0.4.19"
+  }
+}
