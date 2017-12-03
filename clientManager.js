@@ -1,14 +1,7 @@
-const cloudinary = require('cloudinary');
 const axios = require('axios');
 const config = require('./config');
 const path = require('path');
 const fs = require('fs');
-
-cloudinary.config({
-  cloud_name: 'photo-upload-cloud',
-  api_key: '373322164857891',
-  api_secret: 'ww4_CBdcyVWdO1MrwJACzjTun2A'
-});
 
 module.exports = (function () {
   function clientManager(io) {
@@ -16,6 +9,7 @@ module.exports = (function () {
   };
 
   clientManager.prototype.uploadToLocal = function (image, callback) {
+    const fileName = 'image.jpeg';
     const pathToFile = path.join(__dirname, 'client', 'uploads', 'image.jpeg');
     const url = `https://canon-hack.herokuapp.com/uploads/${fileName}`;
 

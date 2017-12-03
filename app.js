@@ -38,14 +38,14 @@ let clientManager;
       .then(data => {
         clientManager.uploadImage(data, (err, result) => {
           console.log('result', result);
-          return clientManager.sendToCloud(url);
+          clientManager.sendToCloud(result.url)
+            .then(data => {
+              console.log('data', data);
+              clientManager.sendData(data);
+            })
         });
       })
-      .then(data => {
-        console.log('data', data);
-        clientManager.sendData(data);
-      })
-      .catch(res => console.error(res));
+      .catch(err => console.error(err));
   });
 
   app.get('*', (req, res) => {
@@ -62,10 +62,7 @@ let clientManager;
   camera = new Camera();
   // handle camera socket connections.
   cameraManager = new CameraManager(camera);
-  cameraManager.listen(io, {
-    ip: '',
-    port: '',
-  });
+  cameraManager.listen(io);
 
   // handle client socket connections.
   clientManager = new ClientManager(io);
