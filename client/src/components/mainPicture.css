@@ -1,0 +1,10 @@
+.fieldPicture {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.fieldPicture img {
+  display: inline-block;
+  height: 500px;
+  width: auto;
+}

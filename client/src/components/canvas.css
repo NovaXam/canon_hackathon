@@ -1,0 +1,16 @@
+.canvesField {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.canvesField .icon {
+  position: relative;
+  /*width: 200px;*/
+  top: -450px;
+  left: -210px;
+}
+
+.icon img {
+  height: 100px;
+  width: 100px;
+}
